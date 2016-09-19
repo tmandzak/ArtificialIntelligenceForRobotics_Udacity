@@ -1,17 +1,12 @@
-# Now we want to give weight to our 
-# particles. This program will print a
-# list of 1000 particle weights.
-#
-# Don't modify the code below. Please enter
-# your code at the bottom.
+# In this exercise, write a program that will
+# run your previous code twice.
+# Please only modify the indicated area below!
 
 from math import *
 import random
 
-
 landmarks  = [[20.0, 20.0], [80.0, 80.0], [20.0, 80.0], [80.0, 20.0]]
 world_size = 100.0
-
 
 class robot:
     def __init__(self):
@@ -87,7 +82,7 @@ class robot:
             dist = sqrt((self.x - landmarks[i][0]) ** 2 + (self.y - landmarks[i][1]) ** 2)
             prob *= self.Gaussian(dist, self.sense_noise, measurement[i])
         return prob
-     
+      
     def __repr__(self):
         return '[x=%.6s y=%.6s orient=%.6s]' % (str(self.x), str(self.y), str(self.orientation))
 
@@ -100,7 +95,7 @@ class robot:
 #myrobot = myrobot.move(-pi/2, 10.0)
 #print myrobot.sense()
 
-####   DON'T MODIFY ANYTHING ABOVE HERE! ENTER CODE BELOW ####
+####   DON'T MODIFY ANYTHING ABOVE HERE! ENTER/MODIFY CODE BELOW ####
 myrobot = robot()
 myrobot = myrobot.move(0.1, 5.0)
 Z = myrobot.sense()
@@ -118,11 +113,21 @@ for i in range(N):
 p = p2
 
 w = []
-#insert code here!
 for i in range(N):
     w.append(p[i].measurement_prob(Z))
 
-print w #Please print w for grading purposes.
+p3 = []
+index = int(random.random() * N)
+beta = 0.0
+mw = max(w)
+for i in range(N):
+    beta += random.random() * 2.0 * mw
+    while beta > w[index]:
+        beta -= w[index]
+        index = (index + 1) % N
+    p3.append(p[index])
+p = p3
 
+print p #Leave this print statement for grading purposes!
 
 
