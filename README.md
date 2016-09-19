@@ -1,2 +1,2 @@
 # ArtificialIntelligenceForRobotics_Udacity
-Code from the cource
+Code from the course
