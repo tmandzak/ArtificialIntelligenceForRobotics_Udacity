@@ -1,11 +1,6 @@
-# Now we want to create particles,
-# p[i] = robot(). In this assignment, write
-# code that will assign 1000 such particles
-# to a list.
-#
-# Your program should print out the length
-# of your list (don't cheat by making an
-# arbitrary list of 1000 elements!)
+# Now we want to give weight to our 
+# particles. This program will print a
+# list of 1000 particle weights.
 #
 # Don't modify the code below. Please enter
 # your code at the bottom.
@@ -92,7 +87,7 @@ class robot:
             dist = sqrt((self.x - landmarks[i][0]) ** 2 + (self.y - landmarks[i][1]) ** 2)
             prob *= self.Gaussian(dist, self.sense_noise, measurement[i])
         return prob
-    
+     
     def __repr__(self):
         return '[x=%.6s y=%.6s orient=%.6s]' % (str(self.x), str(self.y), str(self.orientation))
 
@@ -106,11 +101,28 @@ class robot:
 #print myrobot.sense()
 
 ####   DON'T MODIFY ANYTHING ABOVE HERE! ENTER CODE BELOW ####
+myrobot = robot()
+myrobot = myrobot.move(0.1, 5.0)
+Z = myrobot.sense()
 
 N = 1000
 p = []
+for i in range(N):
+    x = robot()
+    x.set_noise(0.05, 0.05, 5.0)
+    p.append(x)
 
-#enter code here
-p = [robot() for i in range(1000)]
+p2 = []
+for i in range(N):
+    p2.append(p[i].move(0.1, 5.0))
+p = p2
 
-print len(p)
+w = []
+#insert code here!
+for i in range(N):
+    w.append(p[i].measurement_prob(Z))
+
+print w #Please print w for grading purposes.
+
+
+
