@@ -109,7 +109,7 @@ class robot:
             cx = self.x - sin(self.orientation)*R
             cy = self.y + cos(self.orientation)*R
         
-            orientation1 = self.orientation + beta
+            orientation1 = (self.orientation + beta) % (2.0*pi)
             x1 = cx + sin(orientation1)*R
             y1 = cy - cos(orientation1)*R
         
@@ -137,23 +137,23 @@ class robot:
 ##       Robot:     [x=39.034 y=7.1270 orient=0.2886]
 ##
 ##
-length = 20.
-bearing_noise  = 0.0
-steering_noise = 0.0
-distance_noise = 0.0
+##length = 20.
+##bearing_noise  = 0.0
+##steering_noise = 0.0
+##distance_noise = 0.0
 ##
-myrobot = robot(length)
-myrobot.set(0.0, 0.0, 0.0)
-myrobot.set_noise(bearing_noise, steering_noise, distance_noise)
+##myrobot = robot(length)
+##myrobot.set(0.0, 0.0, 0.0)
+##myrobot.set_noise(bearing_noise, steering_noise, distance_noise)
 ##
-motions = [[0.0, 10.0], [pi / 6.0, 10], [0.0, 20.0]]
+##motions = [[0.0, 10.0], [pi / 6.0, 10], [0.0, 20.0]]
 ##
-T = len(motions)
+##T = len(motions)
 ##
-print 'Robot:    ', myrobot
-for t in range(T):
-    myrobot = myrobot.move(motions[t])
-    print 'Robot:    ', myrobot
+##print 'Robot:    ', myrobot
+##for t in range(T):
+##    myrobot = myrobot.move(motions[t])
+##    print 'Robot:    ', myrobot
 ##
 ##
 
