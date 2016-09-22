@@ -100,7 +100,7 @@ def search(grid,init,goal,cost):
                     y = y2
             i+=1
             
-        g-=1            
+        g-=cost            
                             
     return mapa 
 '''
